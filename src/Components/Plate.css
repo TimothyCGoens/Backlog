@@ -1,0 +1,19 @@
+.plate {
+    border: black solid 1px;
+    width: 300px;
+    height: 150px;
+
+}
+img {
+    margin-top: 10px;
+    margin-left: 10px;
+    height: 130px;
+    width: 104px;
+}
+.plate-layout {
+    display: flex;
+}
+.plate-body {
+    width: 100%;
+    text-align: center;
+}

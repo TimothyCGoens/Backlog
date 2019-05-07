@@ -6,6 +6,16 @@ export class Profile extends Component {
         return(
             <div className='profile'>
             <h1>Your Profile</h1>
+            <div className='profile-layout'>
+            <div className='currently-playing'>Currently Playing</div>
+            <div className='user-info'>
+            <div><p>Username</p></div>
+            <div><p>Location</p></div>
+            <div><p>Primary Platform</p></div>
+            <div><p>Favorite Genre</p></div>
+            <div><p>About Me</p></div>
+            </div>
+            </div>
             </div>
         )
     }
