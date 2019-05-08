@@ -1,6 +1,26 @@
 .backlog {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    flex-wrap: wrap;
     align-items: center;
+}
+.backlog-layout {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+.backlog-highlight {
+    display: flex;
+    flex-direction: column;
+    width: 360px;
+    text-align: center;
+    border-right: solid black 1px;
+    align-items: center;
+}
+.backlog-results {
+    display: flex;
+    flex-direction: column;
+    width: 1080px;
+    text-align: center;
+    padding: 10px;
 }

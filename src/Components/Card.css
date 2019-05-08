@@ -1,0 +1,29 @@
+.entire-card {
+    display: flex;
+    flex-direction: column;
+    border: solid black 1px;
+    width: 283px;
+    height: 391px;
+}
+.card-header {
+    display: flex;
+}
+.card-title {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.card-body {
+    text-align: left;
+    padding-left: 10px;
+}
+.card-buttons {
+    display: flex;
+    width: 100%;
+    margin: 0px;
+    padding-left: 0px;
+}
+button {
+    background-color: silver;
+    border: black solid 1px;
+}
