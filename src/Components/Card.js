@@ -16,9 +16,9 @@ export class Card extends Component {
                 <div className='card-body'>
                     <p>Release Date:</p>
                     <p>Website:</p>
-                    <p>Wiki:</p>
+                    <p>Description:</p>
                     <p>Reviews:</p>
-                    <p>Guides:</p>
+                    <p>Quick Look:</p>
                 </div>
                 <ul className='card-buttons'>
                     <li><button>Add to Backlog</button></li>

@@ -9,8 +9,21 @@ export class Search extends Component {
         super()
 
         this.state = {
+            games: [],
             title: ''
         }
+    }
+
+    componentDidMount() {
+        let url = `http://www.giantbomb.com/api/search/?api_key=f194765e78f8558180a48f79cbb6b02fe6f9bca2&format=json&query="${this.state.title}"&resources=game`
+        
+        fetch(url)
+        .then(response => response.json())
+        .then(json => {
+            this.setState({
+                games: json
+            })
+        })
     }
 
     handleTextChange = (e) => {
@@ -26,7 +39,10 @@ export class Search extends Component {
 
 
     render() {
+      
         return(
+
+    
             <div className='search'>
                 <h1>Search for Games</h1>
                 <input onChange={this.handleTextChange} name='title' type='text' placeholder='Game Title' />
