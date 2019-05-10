@@ -15,31 +15,45 @@ export class Search extends Component {
     }
 
     componentDidMount() {
-        let url = `http://www.giantbomb.com/api/search/?api_key=f194765e78f8558180a48f79cbb6b02fe6f9bca2&format=json&query="${this.state.title}"&resources=game`
         
-        fetch(url)
-        .then(response => response.json())
-        .then(json => {
-            this.setState({
-                games: json
-            })
-        })
+      
     }
 
     handleTextChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
+
+       
     }
 
     handleSearchClick = () => {
-        console.log('clicked')
+
+        fetch('http://localhost:8080/send-search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                "Accept": 'application/json'
+            },
+            body: JSON.stringify(this.state.title)
+        })
+        .then(response => response.json())
+
+        // fetch('/search').then(function(response) {
+        //     console.log(response.json())
+        //     return response.json()
+        // }).then(function(json) {
+        //     this.setState({
+        //         games: this.state.games.concat(json)
+        //     })
+        // })
     }
 
 
 
     render() {
       
+       
         return(
 
     
@@ -52,7 +66,7 @@ export class Search extends Component {
                             <Card />
                         </div>
                         <div className='search-results'>
-                            <Plate />
+                            <Plate games={this.state.games}/>
                         </div>
                     </div>
             </div>
