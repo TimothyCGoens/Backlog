@@ -14,13 +14,23 @@
     flex-direction: column;
     width: 360px;
     text-align: center;
-    border-right: solid black 1px;
     align-items: center;
 }
 .backlog-results {
+    justify-content: center;
     display: flex;
-    flex-direction: column;
-    width: 1080px;
+    flex-wrap: wrap;
+    width: 100%;
     text-align: center;
     padding: 10px;
+}
+.number-placement-block {
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+    height: 150px;
+    margin: 5px;
+}
+.number-in-block {
+    display: flex;
 }

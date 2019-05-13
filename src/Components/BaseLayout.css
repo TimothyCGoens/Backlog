@@ -9,20 +9,8 @@ li {
     flex-direction: column;
     width: 100%;
     align-items: center;
-    border-bottom: solid black 1px;
 }
 .menu-items {
     display: flex;
     margin: 10px;
-}
-.link {
-    text-decoration: none;
-    background-color: silver;
-    color: black;
-    border: solid black 1px;
-    padding: 3px;
-}
-.link:hover {
-    background-color: black;
-    color: white;
 }

@@ -1,7 +1,7 @@
 .search {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    flex-wrap: wrap; 
     align-items: center;
 }
 .search-layout {
@@ -12,17 +12,29 @@
 .search-highlight {
     display: flex;
     flex-direction: column;
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
     width: 360px;
     text-align: center;
     /* border-right: solid black 1px; */
     align-items: center;
 }
 .search-results {
+    justify-content: center;
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
-    width: 1080px;
+    width: 100%;
     text-align: center;
     padding: 10px;
+}
+.search-button {
+    margin-top: 10px;
+    width: 66px;
+    height: 30px;
+    padding: 3px;
+    font-size: 17px;
+}
+.search-button:hover {
+    color: white;
+    background-color: black;
+    cursor: pointer;
 }

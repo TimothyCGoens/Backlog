@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Plate} from './Plate'
+import Plate from './Plate'
 import {Card} from './Card'
 import './Backlog.css'
 

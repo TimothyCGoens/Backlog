@@ -1,16 +1,52 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 import './Card.css'
 
 export class Card extends Component {
+
+    constructor() {
+        super()
+            this.state = {
+                loadedPost: null
+            }
+    }
+    componentDidUpdate () {
+        if (this.props.id) {
+            if(!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)) {
+                axios.get('https://jsonplaceholder.typicode.com/posts/' + this.props.id)
+                .then(response => {
+                    this.setState({loadedPost: response.data})
+                })
+            }
+
+        } 
+    }
+
+    handleBacklogClick = () => {
+        console.log('clicked')
+    }
+
+    handleWishlistClick = () => {
+        console.log('clicked')
+    }
+    handleCurrentClick = () => {
+        console.log('clicked')
+    }
+
     render() {
-        return(
-            <div className='entire-card'>
+        let post = <p>Please select a game!</p>
+        if (this.props.id) {
+            post = <p>Loading!</p>
+        }
+        if(this.state.loadedPost) {
+            
+            post = (
+                <div className='entire-card'>
                 <div className='card-header'>
-                <img src='https://images.g2a.com/newlayout/323x433/1x1x0/26c128e4cba2/5cc00ab8ae653a6010535245'/>
                 <div className='card-title'>
-                    <p>Game Title</p>
-                    <p>Genre</p>
-                    <p>Developer</p>
+                    <p>{this.state.loadedPost.title}</p>
+                    <p>Random</p>
+                    <p>Random</p>
                 </div>
                 </div>
                 <div className='card-body'>
@@ -21,12 +57,18 @@ export class Card extends Component {
                     <p>Quick Look:</p>
                 </div>
                 <ul className='card-buttons'>
-                    <li><button>Add to Backlog</button></li>
-                    <li><button>Add to Wishlist</button></li>
-                    <li><button>Add to Current</button></li>
+                    <li><button onClick={this.handleBacklogClick}>Backlog</button></li>
+                    <li><button onClick={this.handleWishlistClick}>Wishlist</button></li>
+                    <li><button onClick={this.handleCurrentClick}>Current</button></li>
                 </ul>
             </div>
-            
+            )
+          
+
+        }
+        return(
+            post
         )
     }
 }
+    

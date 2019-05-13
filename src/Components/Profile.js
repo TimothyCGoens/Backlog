@@ -1,8 +1,25 @@
 import React, {Component} from 'react'
 import {Card} from './Card'
 import './Profile.css'
+import Axios from 'axios';
 
 export class Profile extends Component {
+
+    // constructor() {
+    //     super()
+    //     this.state = {
+    //         user: []
+    //     }
+    // }
+
+    // componentDidMount() {
+    //     Axios.get('http://localhost8080/profile')
+    //     .then(response => {
+    //         this.setState({user: response.data})
+    //     })
+    // }
+
+
     render() {
         return(
             <div className='profile'>

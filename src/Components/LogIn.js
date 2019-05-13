@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 import './LogIn.css'
 
 export class Login extends Component {
@@ -7,7 +8,7 @@ export class Login extends Component {
         super()
 
         this.state = {
-            email: '',
+            username: '',
             password: ''
         }
     }
@@ -19,7 +20,13 @@ export class Login extends Component {
     }
 
     handleLogInClick = () => {
-        console.log("clicked")
+        
+        axios.post('http://localhost:8080/login',{
+            username: this.state.username,
+            password: this.state.password
+        }).then(response => {
+            
+        }).catch(error => console.log(error))
     }
 
 
@@ -28,8 +35,8 @@ export class Login extends Component {
         return(
             <div className='Login'>
                 <h1>Log In</h1>
-                <input onChange={this.handleTextChange} name='email' type='email' placeholder='email address' />
-                <input onChange={this.handleTextChange} name='password' type='password' placeholder='password' />
+                <input className='inputs' onChange={this.handleTextChange} name='username' type='text' placeholder='username' />
+                <input className='inputs' onChange={this.handleTextChange} name='password' type='password' placeholder='password' />
                 <button onClick={this.handleLogInClick}>Log In</button>
             </div>
         )

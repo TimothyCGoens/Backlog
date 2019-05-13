@@ -1,21 +1,10 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 import './Register.css'
 
 // const OPTIONS = ['PS4', 'XBOX']
 
 export class Register extends Component {
-
-    // createCheckbox = option => (
-    //     <Checkbox
-    //     label={option}
-    //     isSelected={this.state.checkboxes[option]}
-    //     onCheckboxChange={this.handleCheckboxChange}
-    //     key={option}
-    //     />
-    // )
-
-    // createCheckboxes = () => { OPTIONS.map(this.createCheckbox)}
-
  constructor() {
      super()
 
@@ -29,7 +18,6 @@ export class Register extends Component {
          password: ''
      }
  }
-
     handleTextChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -37,7 +25,20 @@ export class Register extends Component {
     }
 
     handleRegisterClick = () => {
-        console.log("clicked")
+        const user = {
+            username: this.state.username,
+            location: this.state.location,
+            platform: this.state.platform,
+            genre: this.state.genre,
+            aboutme: this.state.aboutMe,
+            email: this.state.email,
+            password: this.state.password
+        }
+        axios.post('http://localhost:8080/register', user)
+            .then(response => {
+                console.log(response)
+        })
+        // console.log("clicked")
     }
 
 
@@ -45,14 +46,15 @@ export class Register extends Component {
         return(
             <div className='register'>
             <h1>Register</h1>
-            <input onChange={this.handleTextChange} name='username' type='text' placeholder='username' />
-            <input onChange={this.handleTextChange} name='location' type='text' placeholder='location' />
-            <input onChange={this.handleTextChange} name='platform' type='text' placeholder='platform of choice' />
-            <input onChange={this.handleTextChange} name='genre' type='text' placeholder='favorite genre' />
-            <textarea onChange={this.handleTextChange} name='aboutMe' placeholder='about me' />
-            <input onChange={this.handleTextChange} name='email' type='email' placeholder='email' />
-            <input onChange={this.handleTextChange} name='password' type='password' placeholder='password' />
-            <h4>Check for each platform you play on</h4>
+            <div className='register-inputs'>
+            <input className='inputs' onChange={this.handleTextChange} name='username' type='text' placeholder='username' />
+            <input className='inputs' onChange={this.handleTextChange} name='location' type='text' placeholder='location' />
+            <input className='inputs' onChange={this.handleTextChange} name='platform' type='text' placeholder='platform of choice' />
+            <input className='inputs' onChange={this.handleTextChange} name='genre' type='text' placeholder='favorite genre' />
+            <textarea className='text-area-input' onChange={this.handleTextChange} name='aboutMe' placeholder='about me' />
+            <input className='inputs' onChange={this.handleTextChange} name='email' type='email' placeholder='email' />
+            <input className='inputs' onChange={this.handleTextChange} name='password' type='password' placeholder='password' />
+            </div>
             <button onClick={this.handleRegisterClick}>Register</button>
 
             </div>

@@ -9,11 +9,11 @@ export class Menu extends Component {
             <h1>Backlog</h1>
             <div>
             <ul className='menu-items'>
-                <li><NavLink className='link' to='/register'>Register</NavLink></li>
-                <li><NavLink className='link' to='/login'>Log In</NavLink></li>
-                <li><NavLink className='link' to='/profile'>Profile</NavLink></li>
-                <li><NavLink className='link' to='/search'>Search</NavLink></li>
-                <li><NavLink className='link' to='/backlog'>Backlog</NavLink></li>
+                <li><Link to='/register'><button>Register</button></Link></li>
+                <li><Link to='/login'><button>Log In</button></Link></li>
+                <li><Link to='/profile'><button>Profile</button></Link></li>
+                <li><Link to='/search'><button>Search</button></Link></li>
+                <li><Link to='/backlog'><button>Backlog</button></Link></li>
             </ul>
             </div>
             </div>

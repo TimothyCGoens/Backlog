@@ -1,9 +1,12 @@
 .entire-card {
     display: flex;
     flex-direction: column;
-    border: solid black 1px;
+    flex-wrap: wrap;
+    border-top: #e4e4e4 solid 1px;
+    border-left: #e4e4e4 solid 1px;
     width: 283px;
     height: 391px;
+    box-shadow: 7px 4px 3px #666;
 }
 .card-header {
     display: flex;
@@ -18,6 +21,7 @@
     padding-left: 10px;
 }
 .card-buttons {
+    justify-content: center;
     display: flex;
     width: 100%;
     margin: 0px;
@@ -25,5 +29,27 @@
 }
 button {
     background-color: silver;
-    border: black solid 1px;
+    box-shadow: -4px 4px 2px #666;
+    width: 66px;
+    height: 30px;
+    padding: 3px;
+    font-size: 16px;
+    border: none;
+}
+button:hover {
+    color: white;
+    background-color: black;
+    cursor: pointer;
+    border: none;
+    outline-color: none;
+    box-shadow: -5px 5px 6px #666;
+}
+button:active {
+    background-color: black;
+    box-shadow: -4px 4px 2px #666;
+    transform: translateY(4px);
+    outline-color: none;
+}
+button:focus {
+    outline:0;
 }
