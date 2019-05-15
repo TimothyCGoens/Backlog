@@ -1,19 +1,21 @@
 import React, {Component} from 'react'
 import Plate from './Plate'
-import {Card} from './Card'
+import Card from './Card'
 import axios from 'axios'
 import Pagination from 'react-js-pagination'
+import {connect} from 'react-redux'
 import './Search.css'
 
-export class Search extends Component {
+class Search extends Component {
 
     constructor(props) {
         super(props)
 
         this.state = {
             activePage: 1,
-            selectedPostId: null,
-            posts: [],
+            selectedGameId: null,
+            // loadedCard: null,
+            // posts: [],
             games: [],
             title: ''
         }
@@ -22,13 +24,13 @@ export class Search extends Component {
         this.setState({activePage: pageNumber})
     }
 
-    componentDidMount() {
-        axios.get('http://jsonplaceholder.typicode.com/posts')
-        .then(response => {
-            this.setState({posts: response.data})
-            //console.log(response)
-        })
-    }
+    // componentDidMount() {
+    //     axios.get('http://jsonplaceholder.typicode.com/posts')
+    //     .then(response => {
+    //         this.setState({posts: response.data})
+    //         //console.log(response)
+    //     })
+    // }
 
     handleTextChange = (e) => {
         this.setState({
@@ -37,42 +39,41 @@ export class Search extends Component {
     }
     // clicking a plate will populate the sidebar with info
     handlePlateSelected = (id) =>{
-        this.setState({selectedPostId: id})
+  
+        // if (this.state.selectedGameId) {
+        //     if(!this.state.loadedCard || (this.state.loadedCard && this.state.loadedCard.id !== this.props.id)) {
+        axios.get(`${'https://cors-anywhere.herokuapp.com/'}https://www.giantbomb.com/api/game/${id}/?api_key=f194765e78f8558180a48f79cbb6b02fe6f9bca2&format=JSON`,{crossdomain:true})
+                .then(response => {
+                    this.props.dispatchCard(response.data.results)
+                    console.log(response.data.results.publishers)
+                    // // this.setState({loadedCard: response.data.results})
+                    // const cardItem = response.data.results 
+                })
+        //     }
+
+        // } 
     }
-    // handleSearchClick = () => {
-
-    //     fetch('http://localhost:8080/send-search', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             "Accept": 'application/json'
-    //         },
-    //         body: JSON.stringify(this.state.title)
-    //     })
-    //     .then(response => response.json())
-
-        // fetch('/search').then(function(response) {
-        //     console.log(response.json())
-        //     return response.json()
-        // }).then(function(json) {
-        //     this.setState({
-        //         games: this.state.games.concat(json)
-        //     })
-        // })
-    //}
 
 
+    handleSearchClick = () => {
+
+    axios.get(`${'https://cors-anywhere.herokuapp.com/'}http://www.giantbomb.com/api/search/?api_key=f194765e78f8558180a48f79cbb6b02fe6f9bca2&format=json&query="${this.state.title}"&resources=game`,{crossdomain:true})
+    .then(response => {
+      this.setState({games: response.data.results})
+    })
+}
 
     render() {
 
-        const posts = this.state.posts.map((post) => {
+        const games = this.state.games.map((game) => {
             return <Plate 
-                    key={post.id} 
-                    name={post.title} 
-                    // street={post.address.street} 
-                    // city={post.address.city}
-                    clicked={() => this.handlePlateSelected(post.id)}/>
+                    key={game.guid} 
+                    name={game.name} 
+                    image={game.image.medium_url} 
+                    release_date={game.original_release_date}
+                    clicked={() => this.handlePlateSelected(game.guid)}/>
         })
+        
       
        
         return(
@@ -82,10 +83,10 @@ export class Search extends Component {
                 <button className='search-button' onClick={this.handleSearchClick}>Search</button>
                     <div className='search-layout'>
                         <div className='search-highlight'>
-                            <Card id={this.state.selectedPostId}/>
+                            <Card id={this.state.selectedGameId}/>
                         </div>
                         <div className='search-results'>
-                            {posts}
+                            {games}
                             <Pagination
                                 firstPageText={<i className='glyphicon glyphicon-chevron-left'/>}
                                 lastPageText={<i className='glyphicon glyphicon-chevron-right'/>}
@@ -102,3 +103,17 @@ export class Search extends Component {
         )
     }
 }
+
+
+
+const mapDispatchToProps = (dispatch) => {
+    return ({
+        dispatchCard: (game) => {dispatch({type: 'CARD_LOADED', value: game})
+    }
+    })
+    
+}
+
+
+
+export default connect(null, mapDispatchToProps)(Search)

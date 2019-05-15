@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import {connect} from 'react-redux'
 import './Register.css'
 
-// const OPTIONS = ['PS4', 'XBOX']
 
-export class Register extends Component {
+class Register extends Component {
  constructor() {
      super()
 
@@ -62,3 +62,10 @@ export class Register extends Component {
         )
     }
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onAuthenticated: (token) => dispatch({type: 'ON_AUTHENTICATED', token: token})
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Register)

@@ -1,24 +1,26 @@
 import React, {Component} from 'react'
-import {Card} from './Card'
+import {connect} from 'react-redux'
+import Card from './Card'
 import './Profile.css'
 import Axios from 'axios';
 
 export class Profile extends Component {
 
-    // constructor() {
-    //     super()
-    //     this.state = {
-    //         user: []
-    //     }
-    // }
+    constructor() {
+        super()
+        this.state = {
+            user: []
+        }
+    }
 
-    // componentDidMount() {
-    //     Axios.get('http://localhost8080/profile')
-    //     .then(response => {
-    //         this.setState({user: response.data})
-    //     })
-    // }
+    componentDidMount() {
+        Axios.get('http://localhost8080/profile')
+        .then(response => {
+            this.setState({user: response.data})
+        })
+    }
 
+    
 
     render() {
         return(
@@ -39,3 +41,11 @@ export class Profile extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.uid
+    }
+}
+
+export default connect(mapStateToProps)(Profile)

@@ -1,26 +1,9 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import './Card.css'
+import { connect } from 'react-redux';
 
-export class Card extends Component {
-
-    constructor() {
-        super()
-            this.state = {
-                loadedPost: null
-            }
-    }
-    componentDidUpdate () {
-        if (this.props.id) {
-            if(!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)) {
-                axios.get('https://jsonplaceholder.typicode.com/posts/' + this.props.id)
-                .then(response => {
-                    this.setState({loadedPost: response.data})
-                })
-            }
-
-        } 
-    }
+class Card extends Component {
 
     handleBacklogClick = () => {
         console.log('clicked')
@@ -34,23 +17,57 @@ export class Card extends Component {
     }
 
     render() {
-        let post = <p>Please select a game!</p>
-        if (this.props.id) {
-            post = <p>Loading!</p>
-        }
-        if(this.state.loadedPost) {
-            
-            post = (
-                <div className='entire-card'>
+
+        // const cards = this.state.loadedCard.map((card) => {
+        //     return <Card 
+        //             key={card.guid}
+        //             name={card.name}
+        //             developers={card.developers}
+        //             publishers={card.publishers}
+        //             releaseDate={card.original_release_date}
+        //             image={card.image.medium_url}
+        //             genres={card.genres} />
+        // })
+
+        // if (this.props.card) {
+
+    
+            // console.log(game[0])
+        
+        
+        let publisher = this.props.publishers.map((game) => {
+            return (
+                <p>{game.name}</p>
+            )
+            // return <p>game.publishers.name</p>
+        })
+        let image = this.props.image.map((game) => {
+            console.log(game)
+            return (
+                <img src={game.medium_url}/>
+            )
+        })
+
+
+        // let post = <p>Please select a game!</p>
+        // if (this.props.card) {
+        //     post = <p>Loading!</p>
+        // }
+        // if(this.props.card) {
+            return (
+                <div key={this.props.card.id} className='entire-card'>
+                {/* {cards} */}
                 <div className='card-header'>
                 <div className='card-title'>
-                    <p>{this.state.loadedPost.title}</p>
-                    <p>Random</p>
-                    <p>Random</p>
+                    <p>{this.props.card.name}</p>
+                    <p>{this.props.card.deck}</p>
+                    {/* <img src={this.props.card.image.medium_url} alt='box art' /> */}
+                    {publisher}
+                    {image}
                 </div>
                 </div>
                 <div className='card-body'>
-                    <p>Release Date:</p>
+                    {/* <p>{this.state.loadedCard.genres}</p> */}
                     <p>Website:</p>
                     <p>Description:</p>
                     <p>Reviews:</p>
@@ -63,12 +80,16 @@ export class Card extends Component {
                 </ul>
             </div>
             )
-          
-
         }
-        return(
-            post
-        )
+    }
+
+const mapStateToProps = (state) => {
+    console.log(state)
+    return {
+        card: state.selectedGame,
+        publishers: state.publishers,
+        image: state.image
     }
 }
-    
+
+export default connect(mapStateToProps,null)(Card)

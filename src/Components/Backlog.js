@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import Plate from './Plate'
-import {Card} from './Card'
+import Card from './Card'
 import './Backlog.css'
 
 export class Backlog extends Component {

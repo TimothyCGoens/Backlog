@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import {setAuthenticationHeader} from '../utilities/authenticate'
+import {connect} from 'react-redux'
 import './LogIn.css'
 
-export class Login extends Component {
+class Login extends Component {
 
     constructor() {
         super()
@@ -25,8 +27,14 @@ export class Login extends Component {
             username: this.state.username,
             password: this.state.password
         }).then(response => {
-            
-        }).catch(error => console.log(error))
+            let token = response.data.token
+            let userID = response.data.id 
+            localStorage.setItem('jsonwebtoken', token)
+            this.props.onAuthenticated(token, userID)
+            setAuthenticationHeader(token)
+            console.log(response.data)
+            this.props.history.push('/search')
+        }).catch(err => console.log(err))
     }
 
 
@@ -42,3 +50,13 @@ export class Login extends Component {
         )
     }
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onAuthenticated: (token, userID) => dispatch({type: 'ON_AUTHENTICATED', token: token, uid:userID})
+    }
+    
+}
+
+export default connect(null, mapDispatchToProps)(Login)
+
