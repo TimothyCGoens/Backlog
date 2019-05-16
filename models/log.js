@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Log = sequelize.define('Log', {
+  const Logs = sequelize.define('Logs', {
     name: DataTypes.STRING,
     image: DataTypes.STRING,
     developer: DataTypes.STRING,
@@ -12,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     videos: DataTypes.STRING,
     gb: DataTypes.STRING
   }, {});
-  Log.associate = function(models) {
-    // associations can be defined here
+  Logs.associate = function(models) {
+    Logs.belongsTo(models.Users, {foreignKey: 'users'})
   };
-  return Log;
+  return Logs;
 };

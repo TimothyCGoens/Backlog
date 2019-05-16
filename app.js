@@ -8,7 +8,6 @@ const models = require('./models')
 const jwt = require('jsonwebtoken')
 
 app.use(cors())
-app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
 app.get('/', (req,res) => {
@@ -32,6 +31,10 @@ function authenticate(req,res, next) {
         }
     })
 }
+
+app.get('/profile', (req, res) => {
+    res.json(userId)
+})
 
 app.post('/register', (req,res) => {
     let username = req.body.username
@@ -65,23 +68,35 @@ app.post('/login', (req, res) => {
 
     models.Users.findOne({
         where: {
-            username: username
+            username: username,
             // password: password
         }
     })
     .then((user) => {
-        jwt.sign({username: username}, 'secret', function(err, token) {
-            if (token) {
-                res.json({token: token, id: user.dataValues.id})
-            }else {
-                res.status(500).json({message: 'unable to generate token'})
-            }
-        })
+        if(user) {
+            jwt.sign({username: username}, 'secret', function(err, token) {
+                if (token) {
+                    res.json({token: token, id: user.dataValues.id})
+                }else {
+                    res.status(500).json({message: 'unable to generate token'})
+                }
+            })
+        }
+
     })
 })
 
-app.get('profile', (req, res) => {
-    console.log("yo")
+
+app.get('/profile/:userId', async (req, res) => {
+    let userId = req.params.userId
+    let user = await models.Users.findOne({
+        where: {
+            id: userId
+        }
+    }).then(user => {
+        res.json(user)
+        console.log(user)
+    })
 })
 
 app.listen(8080, () => {

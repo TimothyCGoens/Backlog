@@ -11,9 +11,10 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import setAuthenticationHeader from './utilities/authenticate'
 import Login from './Components/LogIn'
 import Register from './Components/Register'
-import {Profile} from './Components/Profile'
-import {Backlog} from './Components/Backlog'
+import Profile from './Components/Profile'
+import Backlog from './Components/Backlog'
 import Search from './Components/Search'
+import requireAuth from './Components/requireAuth'
 
 const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
@@ -28,9 +29,9 @@ ReactDOM.render(
                 <Route path='/' exact component={App} />
                 <Route path='/register' exact component={Register} />
                 <Route path='/login' exact component={Login} />
-                <Route path='/profile' exact component={Profile} />
+                <Route path='/profile/:userId' exact component={requireAuth(Profile)} />
                 <Route path='/search' exact component={Search} />
-                <Route path='/backlog' exact component={Backlog} />
+                <Route path='/backlog' exact component={requireAuth(Backlog)} />
 
 
             </Switch>

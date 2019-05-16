@@ -35,43 +35,53 @@ class Card extends Component {
             // console.log(game[0])
         
         
-        let publisher = this.props.publishers.map((game) => {
+        let publishers = this.props.publishers.map((game) => {
             return (
+                // console.log(game.name[0])
                 <p>{game.name}</p>
             )
             // return <p>game.publishers.name</p>
         })
-        let image = this.props.image.map((game) => {
-            console.log(game)
+     
+        let developers = this.props.developers.map((game) => {
             return (
-                <img src={game.medium_url}/>
+                <p>{game.name}</p>
             )
         })
-
+  
 
         // let post = <p>Please select a game!</p>
         // if (this.props.card) {
         //     post = <p>Loading!</p>
         // }
         // if(this.props.card) {
+            let platforms = this.props.platforms.map((game) => {
+                return (
+                    <p>{game.name}</p>
+                    
+                )
+            })
             return (
                 <div key={this.props.card.id} className='entire-card'>
                 {/* {cards} */}
-                <div className='card-header'>
+                
                 <div className='card-title'>
                     <p>{this.props.card.name}</p>
+                </div>
+                <div className='card-header'>
+                    {this.props.image ? <img src = {this.props.image.medium_url} alt = ''/> : null}
+                    <div className='header-info'>
+                    <p className='header-styles'>{publishers}</p>
+                    <p className='header-styles'>{developers}</p>
+                    {platforms}
+                    </div>
+                    {/* <p>{this.props.card.original_release_date}</p> */}
+                </div>
+                <div className='deck'>
                     <p>{this.props.card.deck}</p>
-                    {/* <img src={this.props.card.image.medium_url} alt='box art' /> */}
-                    {publisher}
-                    {image}
                 </div>
-                </div>
-                <div className='card-body'>
-                    {/* <p>{this.state.loadedCard.genres}</p> */}
-                    <p>Website:</p>
-                    <p>Description:</p>
-                    <p>Reviews:</p>
-                    <p>Quick Look:</p>
+                <div className='resources'>
+                    <p></p>
                 </div>
                 <ul className='card-buttons'>
                     <li><button onClick={this.handleBacklogClick}>Backlog</button></li>
@@ -84,12 +94,22 @@ class Card extends Component {
     }
 
 const mapStateToProps = (state) => {
-    console.log(state)
+
     return {
         card: state.selectedGame,
         publishers: state.publishers,
-        image: state.image
+        image: state.image,
+        developers: state.developers,
+        genres: state.genres,
+        platforms: state.platforms
     }
 }
+// const mapDispatchToProps = (dispatch) => {
+//     return ({
+//         dispatchCard: (game) => {dispatch({type: 'CARD_LOADED', value: game})
+//     }
+//     })
+    
+// }
 
 export default connect(mapStateToProps,null)(Card)

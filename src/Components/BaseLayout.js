@@ -20,7 +20,7 @@ class Menu extends Component {
             <ul className='menu-items'>
                 <li><Link to='/register'><button>Register</button></Link></li>
                 <li><Link to='/login'><button>Log In</button></Link></li>
-                <li><Link to='/profile'><button>Profile</button></Link></li>
+                <li><Link to='/profile/:userId'><button>Profile</button></Link></li>
                 <li><Link to='/search'><button>Search</button></Link></li>
                 <li><Link to='/backlog'><button>Backlog</button></Link></li>
                 {this.props.isAuthenticated ? <li><a onClick={this.handleLogOutClick} href='#'><button>Log Out</button></a></li> : null}

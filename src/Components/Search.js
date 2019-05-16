@@ -24,21 +24,13 @@ class Search extends Component {
         this.setState({activePage: pageNumber})
     }
 
-    // componentDidMount() {
-    //     axios.get('http://jsonplaceholder.typicode.com/posts')
-    //     .then(response => {
-    //         this.setState({posts: response.data})
-    //         //console.log(response)
-    //     })
-    // }
-
     handleTextChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
     }
     // clicking a plate will populate the sidebar with info
-    handlePlateSelected = (id) =>{
+    handlePlateSelected = (id) => {
   
         // if (this.state.selectedGameId) {
         //     if(!this.state.loadedCard || (this.state.loadedCard && this.state.loadedCard.id !== this.props.id)) {

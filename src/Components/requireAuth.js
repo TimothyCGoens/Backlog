@@ -8,7 +8,7 @@ export default function(ComposedComponent) {
             super(props) 
 
             if(!this.props.isAuthenticated) {
-                this.props.history.push('/')
+                this.props.history.push('/login')
             }
         }
         render() {

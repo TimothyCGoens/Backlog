@@ -2,8 +2,9 @@ import React, {Component} from 'react'
 import Plate from './Plate'
 import Card from './Card'
 import './Backlog.css'
+import { connect } from 'react-redux';
 
-export class Backlog extends Component {
+class Backlog extends Component {
     render() {
         return(
             <div className='backlog'>
@@ -20,3 +21,12 @@ export class Backlog extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    console.log(state)
+    return {
+        user: state.uid
+    }
+}
+
+export default connect(mapStateToProps)(Backlog)

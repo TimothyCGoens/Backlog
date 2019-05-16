@@ -32,7 +32,6 @@ class Login extends Component {
             localStorage.setItem('jsonwebtoken', token)
             this.props.onAuthenticated(token, userID)
             setAuthenticationHeader(token)
-            console.log(response.data)
             this.props.history.push('/search')
         }).catch(err => console.log(err))
     }

@@ -1,15 +1,28 @@
 .entire-card {
+    font-size: 12px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     border-top: #e4e4e4 solid 1px;
     border-left: #e4e4e4 solid 1px;
-    width: 283px;
-    height: 391px;
+    width: 350px;
+    height: 450px;
     box-shadow: 7px 4px 3px #666;
+    margin-top: 20px;
+    margin-left: 50px;
 }
 .card-header {
     display: flex;
+}
+.header-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0px;
+}
+.header-styles {
+    text-align: left;
+    margin-left: 3px;
 }
 .card-title {
     display: flex;
