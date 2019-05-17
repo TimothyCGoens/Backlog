@@ -10,10 +10,15 @@ module.exports = (sequelize, DataTypes) => {
     releasedate: DataTypes.STRING,
     platforms: DataTypes.STRING,
     videos: DataTypes.STRING,
-    gb: DataTypes.STRING
+    gb: DataTypes.STRING,
+    completed: DataTypes.BOOLEAN
   }, {});
   Logs.associate = function(models) {
-    Logs.belongsTo(models.Users, {foreignKey: 'users'})
+    Logs.belongsTo(models.Users, {
+      as: 'user',
+      foreignKey: 'userId',
+      // onDelete: 'CASCADE'
+    })
   };
   return Logs;
 };

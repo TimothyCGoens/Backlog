@@ -10,7 +10,10 @@ module.exports = (sequelize, DataTypes) => {
     aboutme: DataTypes.TEXT
   }, {});
   Users.associate = function(models) {
-    // associations can be defined here
+    Users.hasMany(models.Logs, {
+      as: 'logData',
+      foreignKey: 'userId'
+    })
   };
   return Users;
 };

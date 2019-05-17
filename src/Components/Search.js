@@ -14,8 +14,6 @@ class Search extends Component {
         this.state = {
             activePage: 1,
             selectedGameId: null,
-            // loadedCard: null,
-            // posts: [],
             games: [],
             title: ''
         }
@@ -32,18 +30,12 @@ class Search extends Component {
     // clicking a plate will populate the sidebar with info
     handlePlateSelected = (id) => {
   
-        // if (this.state.selectedGameId) {
-        //     if(!this.state.loadedCard || (this.state.loadedCard && this.state.loadedCard.id !== this.props.id)) {
+    
         axios.get(`${'https://cors-anywhere.herokuapp.com/'}https://www.giantbomb.com/api/game/${id}/?api_key=f194765e78f8558180a48f79cbb6b02fe6f9bca2&format=JSON`,{crossdomain:true})
                 .then(response => {
                     this.props.dispatchCard(response.data.results)
                     console.log(response.data.results.publishers)
-                    // // this.setState({loadedCard: response.data.results})
-                    // const cardItem = response.data.results 
-                })
-        //     }
-
-        // } 
+                })  
     }
 
 
@@ -62,7 +54,7 @@ class Search extends Component {
                     key={game.guid} 
                     name={game.name} 
                     image={game.image.medium_url} 
-                    release_date={game.original_release_date}
+                    // release_date={game.original_release_date}
                     clicked={() => this.handlePlateSelected(game.guid)}/>
         })
         
@@ -79,7 +71,7 @@ class Search extends Component {
                         </div>
                         <div className='search-results'>
                             {games}
-                            <Pagination
+                            {/* <Pagination
                                 firstPageText={<i className='glyphicon glyphicon-chevron-left'/>}
                                 lastPageText={<i className='glyphicon glyphicon-chevron-right'/>}
                                 prevPageText={<i className='glyphicon glyphicon-menu-left'/>}
@@ -88,7 +80,7 @@ class Search extends Component {
                                 itemsCountPerPage={10}
                                 totalItemsCount={50}
                                 onChange={this.handlePageChange}
-                                />
+                                /> */}
                         </div>
                     </div>
             </div>

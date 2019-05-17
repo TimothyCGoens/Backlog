@@ -2,11 +2,13 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import './Card.css'
 import { connect } from 'react-redux';
+import {addGameToBacklog} from '../store/actions'
+import * as actionCreators from '../store/actions'
 
 class Card extends Component {
 
     handleBacklogClick = () => {
-        console.log('clicked')
+        this.props.dispatchToBacklog(this.props)
     }
 
     handleWishlistClick = () => {
@@ -18,29 +20,18 @@ class Card extends Component {
 
     render() {
 
-        // const cards = this.state.loadedCard.map((card) => {
-        //     return <Card 
-        //             key={card.guid}
-        //             name={card.name}
-        //             developers={card.developers}
-        //             publishers={card.publishers}
-        //             releaseDate={card.original_release_date}
-        //             image={card.image.medium_url}
-        //             genres={card.genres} />
-        // })
+        // let releaseDate = this.props.releaseDate;
+        // console.log(releaseDate)
+        // let dateStr = JSON.parse(release_date);
+        // console.log(dateStr);
 
-        // if (this.props.card) {
+        // let date = new Date(dateStr)
+        // console.log(date)
 
-    
-            // console.log(game[0])
-        
-        
         let publishers = this.props.publishers.map((game) => {
             return (
-                // console.log(game.name[0])
                 <p>{game.name}</p>
             )
-            // return <p>game.publishers.name</p>
         })
      
         let developers = this.props.developers.map((game) => {
@@ -48,19 +39,23 @@ class Card extends Component {
                 <p>{game.name}</p>
             )
         })
-  
+        let genres = this.props.genres.map((game) => {
+            return (
+                <p>{game.name}</p>
+            )
+        })
+        let platforms = this.props.platforms.map((game) => {
+            return (
+                <p>{game.name}</p>
+            )
+        })
 
-        // let post = <p>Please select a game!</p>
-        // if (this.props.card) {
-        //     post = <p>Loading!</p>
-        // }
-        // if(this.props.card) {
-            let platforms = this.props.platforms.map((game) => {
-                return (
-                    <p>{game.name}</p>
-                    
-                )
-            })
+        if (this.props.gameSelected === false) {
+            return (
+                <div></div>
+            )
+        }
+        else {
             return (
                 <div key={this.props.card.id} className='entire-card'>
                 {/* {cards} */}
@@ -71,45 +66,60 @@ class Card extends Component {
                 <div className='card-header'>
                     {this.props.image ? <img src = {this.props.image.medium_url} alt = ''/> : null}
                     <div className='header-info'>
+                    <p className='bold'>Publisher(s)</p>
                     <p className='header-styles'>{publishers}</p>
+                    <p className='bold'>Developer(s)</p>
                     <p className='header-styles'>{developers}</p>
-                    {platforms}
+                    <p className='bold'>Genre</p>
+                    <p className='header-styles'>{genres}</p>
+                    
+                
                     </div>
                     {/* <p>{this.props.card.original_release_date}</p> */}
                 </div>
                 <div className='deck'>
-                    <p>{this.props.card.deck}</p>
+                <div className='platform-spacing'>
+                <p className='bold'>Platform(s)</p>
+                <p className='platform-styles'>{platforms}</p>
+                </div>
+                    <p className='deck-style'>{this.props.card.deck}</p>
                 </div>
                 <div className='resources'>
                     <p></p>
                 </div>
                 <ul className='card-buttons'>
-                    <li><button onClick={this.handleBacklogClick}>Backlog</button></li>
-                    <li><button onClick={this.handleWishlistClick}>Wishlist</button></li>
-                    <li><button onClick={this.handleCurrentClick}>Current</button></li>
+                    <li><button className='card-backlog-button' onClick={this.handleBacklogClick}>Add to Backlog</button></li>
                 </ul>
-            </div>
+                </div>
             )
         }
+        
     }
+}
+
 
 const mapStateToProps = (state) => {
 
     return {
+        gameSelected: state.gameSelected,
+        name: state.name,
+        deck: state.deck,
         card: state.selectedGame,
         publishers: state.publishers,
         image: state.image,
         developers: state.developers,
         genres: state.genres,
-        platforms: state.platforms
+        platforms: state.platforms,
+        releaseDate: state.releaseDate,
+        userId: state.uid
     }
 }
-// const mapDispatchToProps = (dispatch) => {
-//     return ({
-//         dispatchCard: (game) => {dispatch({type: 'CARD_LOADED', value: game})
-//     }
-//     })
+const mapDispatchToProps = (dispatch) => {
+    return ({
+        dispatchToBacklog: (card) => {dispatch(actionCreators.addGameToBacklog(card)
+        )}
     
-// }
+    })
+}
 
-export default connect(mapStateToProps,null)(Card)
+export default connect(mapStateToProps,mapDispatchToProps)(Card)

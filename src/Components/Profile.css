@@ -9,17 +9,31 @@
     width: 100%;
     height: 100%;
 }
-.currently-playing {
+/* .currently-playing {
     display: flex;
     flex-direction: column;
     width: 360px;
     text-align: center;
     align-items: center;
-}
+} */
 
 .user-info {
     display: flex;
     flex-direction: column;
-    width: 1080px;
+    width: 100%;
+    align-items: center;
+}
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    /* box-shadow: 0ch; */
     text-align: center;
+    margin: 5px;
+}
+.info-name {
+    margin-top: 10px;
+    padding: 7px;
+    /* border: solid black 1px; */
+    box-shadow: inset 0px 1px 3px #666;
+    background-color: white;
 }

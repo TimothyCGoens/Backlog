@@ -21,9 +21,6 @@ class Profile extends Component {
             console.log(response.data)
         })
     }
-    
- 
-    
 
     render() {
 
@@ -31,16 +28,31 @@ class Profile extends Component {
             <div className='profile'>
             <h1>Your Profile</h1>
             <div className='profile-layout'>
-            <div className='currently-playing'>Currently Playing
+            <div className='currently-playing'>
             {/* <Card /> */}
             </div>
             <div className='user-info'>
             
-            <div><p>{this.state.users.username}</p></div>
-            <div><p>{this.state.users.location}</p></div>
-            <div><p>{this.state.users.platform}</p></div>
-            <div><p>{this.state.users.genre}</p></div>
-            <div><p>{this.state.users.aboutme}</p></div>
+            <div className='profile-info'>
+            <p>Username</p>
+            <div className='info-name'>{this.state.users.username}</div>
+            </div>
+            <div className='profile-info'>
+            <p>Location</p>
+            <div className='info-name'>{this.state.users.location}</div>
+            </div>
+            <div className='profile-info'>
+            <p>Platform of choice</p>
+            <div className='info-name'>{this.state.users.platform}</div>
+            </div>
+            <div className='profile-info'>
+            <p>Favorite Genre</p>
+            <div className='info-name'>{this.state.users.genre}</div>
+            </div>
+            <div className='profile-info'>
+            <p>About Me</p>
+            <div className='info-name'>{this.state.users.aboutme}</div>
+            </div>
             </div>
             </div>
             </div>

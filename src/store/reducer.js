@@ -3,20 +3,20 @@ import Axios from "axios";
 const initialState = {
     isAuthenticated: false,
     uid: 0,
+    gameSelected: false,
     selectedGame: {},
     developers: [],
     image: null,
     genres: [],
     platforms: [],
-    publishers: []
+    publishers: [],
+    backlog: [],
 
 }
-
 const reducer = (state = initialState, action) => {
     
     switch(action.type) {
         case 'ON_AUTHENTICATED' :
-        console.log(action)
             return {
                 ...state,
                 isAuthenticated: action.token != null ? true : false,
@@ -29,7 +29,11 @@ const reducer = (state = initialState, action) => {
         }
         case 'CARD_LOADED':
         return {
+            
             ...state,
+            gameSelected: true,
+            name: action.value.name,
+            deck: action.value.deck,
             selectedGame: action.value,
             publishers: action.value.publishers,
             developers: action.value.developers,
@@ -37,12 +41,16 @@ const reducer = (state = initialState, action) => {
             genres: action.value.genres,
             platforms: action.value.platforms,
             releaseDate: action.value.original_release_date,
-            moreDetails: action.value.site_detail_url
+            moreDetails: action.value.site_detail_url,
         }
-        // case 'ADD_TO_BACKLOG':
-        // return {
-        //     ...state
-        // }
+        case 'ADD_TO_BACKLOG':
+        console.log(action)
+        return {
+            ...state,
+            backlog: state.backlog.concat(action.card)
+
+        }
+        
         // .then(() => Axios.post)
         default:
         return state

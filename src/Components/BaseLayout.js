@@ -18,12 +18,12 @@ class Menu extends Component {
             <h1>Backlog</h1>
             <div>
             <ul className='menu-items'>
-                <li><Link to='/register'><button>Register</button></Link></li>
-                <li><Link to='/login'><button>Log In</button></Link></li>
+                {!this.props.isAuthenticated ? <li><Link to='/register'><button>Register</button></Link></li> : null}
+                {!this.props.isAuthenticated ? <li><Link to='/login'><button>Log In</button></Link></li> : null}
                 <li><Link to='/profile/:userId'><button>Profile</button></Link></li>
                 <li><Link to='/search'><button>Search</button></Link></li>
-                <li><Link to='/backlog'><button>Backlog</button></Link></li>
-                {this.props.isAuthenticated ? <li><a onClick={this.handleLogOutClick} href='#'><button>Log Out</button></a></li> : null}
+                <li><Link to='/backlog/:userId'><button>Backlog</button></Link></li>
+                {this.props.isAuthenticated ? <li><a href='#'><button onClick={this.handleLogOutClick}>Log Out</button></a></li> : null}
             </ul>
             </div>
             </div>
@@ -51,7 +51,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onLogout: () => dispatch({type: 'LOGOUT'})
+        onLogout: () => dispatch({type: 'LOG_OUT'})
     }
 }
 

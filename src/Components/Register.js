@@ -30,7 +30,7 @@ class Register extends Component {
             location: this.state.location,
             platform: this.state.platform,
             genre: this.state.genre,
-            aboutme: this.state.aboutMe,
+            aboutme: this.state.aboutme,
             email: this.state.email,
             password: this.state.password
         }
@@ -51,7 +51,7 @@ class Register extends Component {
             <input className='inputs' onChange={this.handleTextChange} name='location' type='text' placeholder='location' />
             <input className='inputs' onChange={this.handleTextChange} name='platform' type='text' placeholder='platform of choice' />
             <input className='inputs' onChange={this.handleTextChange} name='genre' type='text' placeholder='favorite genre' />
-            <textarea className='text-area-input' onChange={this.handleTextChange} name='aboutMe' placeholder='about me' />
+            <textarea className='text-area-input' onChange={this.handleTextChange} name='aboutme' placeholder='about me' />
             <input className='inputs' onChange={this.handleTextChange} name='email' type='email' placeholder='email' />
             <input className='inputs' onChange={this.handleTextChange} name='password' type='password' placeholder='password' />
             </div>

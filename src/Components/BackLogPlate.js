@@ -1,8 +1,9 @@
 import React from 'react'
 
 import './Plate.css'
+import Axios from 'axios';
 
-const plate = (props) => (
+const BackLogPlate = (props) => (
 
      
     <div>
@@ -13,6 +14,7 @@ const plate = (props) => (
                         <p className='title'>{props.name}</p>
                         {/* <p>hello</p> */}
                         <p>{props.release_date}</p>
+                        <button className='backlog-button'>Completed!</button>
                     </div>
             </div>
         </div>
@@ -20,4 +22,4 @@ const plate = (props) => (
 )
 
    
-export default plate
+export default BackLogPlate

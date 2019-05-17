@@ -20,7 +20,7 @@ img {
     display: flex;
 }
 .plate-body {
-    width: 100%;
+    /* width: 100%; */
     text-align: center;
 }
 .plate:active {

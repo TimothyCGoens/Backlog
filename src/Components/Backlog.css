@@ -9,13 +9,6 @@
     width: 100%;
     height: 100%;
 }
-.backlog-highlight {
-    display: flex;
-    flex-direction: column;
-    width: 360px;
-    text-align: center;
-    align-items: center;
-}
 .backlog-results {
     justify-content: center;
     display: flex;
@@ -33,4 +26,27 @@
 }
 .number-in-block {
     display: flex;
+}
+.backlog-button {
+    background-color: silver;
+    box-shadow: -4px 4px 2px #666;
+    width: 100px;
+    height: 30px;
+    padding: 3px;
+    font-size: 16px;
+    border: none;
+}
+.backlog-button:hover {
+    color: white;
+    background-color: black;
+    cursor: pointer;
+    border: none;
+    outline-color: none;
+    box-shadow: -5px 5px 6px #666;
+}
+.backlog-button:active {
+    background-color: black;
+    box-shadow: -4px 4px 2px #666;
+    transform: translateY(4px);
+    outline-color: none;
 }

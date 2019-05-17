@@ -43,7 +43,7 @@ app.post('/register', (req,res) => {
     let location = req.body.location 
     let platform = req.body.platform 
     let genre = req.body.genre 
-    let aboutme = req.body.aboutMe
+    let aboutme = req.body.aboutme
 
 
     bcrypt.hash(password, 10, function(error, hash) {
@@ -86,6 +86,31 @@ app.post('/login', (req, res) => {
     })
 })
 
+app.post('/backlog', (req,res) => {
+    console.log(req.body)
+    
+    models.Users.findOne({
+        where: {
+            id: req.body.userId
+        }
+    }).then(user => {
+        console.log(user)
+        models.Logs.create({
+            name: req.body.name,
+            deck: req.body.deck,
+            publishers: req.body.publishers,
+            developers: req.body.developers,
+            genre: req.body.genres,
+            image: req.body.image,
+            userId: req.body.userId
+        }).then(result => {
+            console.log(result)
+            res.json(result)
+        })
+    }) 
+    
+})
+
 
 app.get('/profile/:userId', async (req, res) => {
     let userId = req.params.userId
@@ -95,8 +120,22 @@ app.get('/profile/:userId', async (req, res) => {
         }
     }).then(user => {
         res.json(user)
-        console.log(user)
     })
+})
+
+app.get('/backlog/:userId', async (req, res) => {
+    let userId = req.params.userId
+    let log = await models.Logs.findAll({
+        where: {
+            userId: userId
+        }
+    }).then(log => {
+        res.json(log)
+    })
+})
+
+app.post('/update-completed', async (req, res) => {
+let c
 })
 
 app.listen(8080, () => {
