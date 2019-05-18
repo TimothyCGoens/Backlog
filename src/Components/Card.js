@@ -64,7 +64,9 @@ class Card extends Component {
                     <p>{this.props.card.name}</p>
                 </div>
                 <div className='card-header'>
-                    {this.props.image ? <img src = {this.props.image.medium_url} alt = ''/> : null}
+                    <div className='image-spot'>
+                        {this.props.image ? <img src = {this.props.image.medium_url} alt = ''/> : null}
+                    </div>
                     <div className='header-info'>
                     <p className='bold'>Publisher(s)</p>
                     <p className='header-styles'>{publishers}</p>
