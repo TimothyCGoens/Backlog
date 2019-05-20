@@ -23,7 +23,7 @@ class Login extends Component {
 
     handleLogInClick = () => {
         
-        axios.post('https://thebacklogapp.herokuapp.com/login',{
+        axios.post(`${'https://cors-anywhere.herokuapp.com/'}https://thebacklogapp.herokuapp.com/login`,{
             username: this.state.username,
             password: this.state.password
         }).then(response => {
