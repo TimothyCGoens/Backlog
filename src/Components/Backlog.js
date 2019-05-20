@@ -16,7 +16,7 @@ class Backlog extends Component {
     }
 
     componentDidMount() {
-        Axios.get(`http://localhost:8080/backlog/${this.props.user}`)
+        Axios.get(`https://thebacklogapp.herokuapp.com/backlog/${this.props.user}`)
         .then(response => {
             this.setState({log: response.data})
             console.log(response.data)
@@ -24,7 +24,7 @@ class Backlog extends Component {
     }
 
     handlePlateSelected = (id) => {
-        Axios.get(`http://localhost:8080/backlog/${this.props.user}`)
+        Axios.get(`https://thebacklogapp.herokuapp.com/backlog/${this.props.user}`)
         .then(response => {
             console.log(response.data)
         })
@@ -51,7 +51,7 @@ class Backlog extends Component {
 
         return(
             <div className='backlog'>
-            <h1>Welcome to the Backlog</h1>
+            <h1>Welcome to your Backlog</h1>
                 <div className='backlog-layout'>
                     <div className='backlog-highlight'>
                         {/* <Card id={this.state.selectedGameId}/> */}

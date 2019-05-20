@@ -16,7 +16,7 @@ const BackLogPlate = (props) => (
                         <p className='title'>{props.name}</p>
                         {/* <p>hello</p> */}
                         <p>{props.release_date}</p>
-                        <button className='backlog-button'>Completed!</button>
+                        {/* <button className='backlog-button'>Completed!</button> */}
                     </div>
             </div>
         </div>
