@@ -16,7 +16,7 @@ class Backlog extends Component {
     }
 
     componentDidMount() {
-        Axios.get(`${'https://cors-anywhere.herokuapp.com/'}https://thebacklogapp.herokuapp.com/backlog/${this.props.user}`)
+        Axios.get(`https://thebacklogapp.herokuapp.com/backlog/${this.props.user}`)
         .then(response => {
             this.setState({log: response.data})
             console.log(response.data)
@@ -24,7 +24,7 @@ class Backlog extends Component {
     }
 
     handlePlateSelected = (id) => {
-        Axios.get(`${'https://cors-anywhere.herokuapp.com/'}https://thebacklogapp.herokuapp.com/backlog/${this.props.user}`)
+        Axios.get(`https://thebacklogapp.herokuapp.com/backlog/${this.props.user}`)
         .then(response => {
             console.log(response.data)
         })

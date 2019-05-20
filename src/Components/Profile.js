@@ -15,7 +15,7 @@ class Profile extends Component {
 
 
     componentDidMount() {
-        Axios.get(`${'https://cors-anywhere.herokuapp.com/'}https://thebacklogapp.herokuapp.com/profile/${this.props.user}`)
+        Axios.get(`https://thebacklogapp.herokuapp.com/profile/${this.props.user}`)
         .then(response => {
             this.setState({users: response.data})
             console.log(response.data)

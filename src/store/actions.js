@@ -19,7 +19,7 @@ export const addGameToBacklog = (card) => {
 
     console.log(body)
     return (dispatch) => {
-        axios.post('http://localhost:8080/backlog', body)
+        axios.post('https://thebacklogapp.herokuapp.com/backlog', body)
     // fetch('http://localhost:8080/backlog', {
     //     method: 'POST',
     //     headers: {

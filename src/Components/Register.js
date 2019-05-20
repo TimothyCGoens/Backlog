@@ -34,9 +34,10 @@ class Register extends Component {
             email: this.state.email,
             password: this.state.password
         }
-        axios.post(`${'https://cors-anywhere.herokuapp.com/'}https://thebacklogapp.herokuapp.com/register`, user)
+        axios.post('https://thebacklogapp.herokuapp.com/register', user)
             .then(response => {
                 console.log(response)
+            this.props.history.push('/login')
         })
         // console.log("clicked")
     }
